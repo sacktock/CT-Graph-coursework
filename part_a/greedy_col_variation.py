@@ -58,6 +58,7 @@ def greedy(G):
         print('vertex', i, ': color', G.node[i]['color'])
     print()
     print('The number of colors that Greedy computed is:', kmax)
+    print()
 
 
 

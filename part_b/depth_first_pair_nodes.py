@@ -22,8 +22,9 @@ def dfs(G,a,b,u):
             if G.nodes[v]['visited'] == 'no':
                 G.nodes[v]['visited'] = 'yes'
                 dfs(G,v,b,u+1)
-        
-    return G.nodes[b]['label']
+            if G.nodes[b]['visited'] == 'yes':
+                return
+    return
 
 print()
 G6=graph6.Graph()
