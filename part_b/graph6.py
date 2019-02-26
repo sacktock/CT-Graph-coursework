@@ -8,7 +8,7 @@ def Graph():
     for i in range(1,k+2):
         G.add_node(i)
 
-    for i in range(k+2,2,-1):
+    for i in range(2,k+2):
         G.add_edge(1,i)
 
 
