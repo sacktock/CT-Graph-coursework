@@ -1,4 +1,5 @@
 import networkx as nx
+import random as rd
 import graph6
 import graph7
 import graph8
@@ -39,61 +40,63 @@ class Queue:
 
 ####################################################
     
-def bfs(G,a,b):
+def bfs_max(G,a):
     G.add_nodes_from(G.nodes(), label = -1) # initialization of all labels
     n = len(G.nodes())
-
+    Max = 0
+    
     G.nodes[a]['label'] = 0
     G.nodes[a]['visited'] = "yes"
+    visited = 1
     S = Queue()
     S.enqueue(a)
 
-    while G.nodes[b]['visited'] == 'no':
+    while not S.isEmpty():
         i = S.dequeue()
         label = G.nodes[i]['label'] + 1
-        for v in G.adj[i]:
+        for v in G.neighbors(i):
             if G.nodes[v]['visited'] == 'no':
                 G.nodes[v]['visited'] = "yes"
                 G.nodes[v]['label'] = label
+                if Max < G.nodes[v]['label']:
+                    Max = G.nodes[v]['label']
                 S.enqueue(v)
 
-    return G.nodes[b]['label']
-        
+    return Max
+
+def max_distance(G):
+    n = len(G.nodes())
+    
+    Max = 0
+
+    for i in range(1,n+1):
+        m = bfs_max(G,i)
+        if Max < m:
+            Max = m
+
+    return Max
+    
+print()
 G6=graph6.Graph()
-a=12
-b=40
-print('Graph G6:')
-print('The distance between vertices', a, 'and', b, 'is:', bfs(G6,a,b))
+print('The diameter of G6 (i.e. the maximum distance between two vertices) is:', max_distance(G6))
 print()
 
 
 G7=graph7.Graph()
-a=5
-b=36
-print('Graph G7:')
-print('The distance between vertices', a, 'and', b, 'is:', bfs(G7,a,b))
+print('The diameter of G7 (i.e. the maximum distance between two vertices) is:', max_distance(G7))
 print()
 
 
 G8=graph8.Graph()
-a=15
-b=35
-print('Graph G8:')
-print('The distance between vertices', a, 'and', b, 'is:', bfs(G8,a,b))
+print('The diameter of G8 (i.e. the maximum distance between two vertices) is:', max_distance(G8))
 print()
 
 
 G9=graph9.Graph()
-a=1
-b=19
-print('Graph G9:')
-print('The distance between vertices', a, 'and', b, 'is:', bfs(G9,a,b))
+print('The diameter of G9 (i.e. the maximum distance between two vertices) is:', max_distance(G9))
 print()
 
 
 G10=graph10.Graph()
-a=6
-b=30
-print('Graph G10:')
-print('The distance between vertices', a, 'and', b, 'is:', bfs(G10,a,b))
+print('The diameter of G10 (i.e. the maximum distance between two vertices) is:', max_distance(G10))
 print()

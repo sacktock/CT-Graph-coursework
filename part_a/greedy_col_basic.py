@@ -13,7 +13,7 @@ def find_smallest_color(G,i):
     
     col = {0}
     x=1
-    for j in G.neighbors(i):
+    for j in G.adj[i]:
         if G.nodes[j]['color'] != 'never coloured':
             col.add(G.nodes[j]['color'])
 
