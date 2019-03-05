@@ -5,28 +5,26 @@ import graph3
 import graph4
 import graph5
 
-kmax = 0
-
 def find_next_vertex(G):
-    n = len(G.nodes())
-
     visited = []
     unvisited = []
-    for i in range(1,n+1):
+    
+    for i in G.nodes():
         if G.nodes[i]['color'] != 'never coloured':
             visited.append(i)
         else:
             unvisited.append(i)
 
+    unvisited.sort()
+
     for i in unvisited:
-        for j in visited:
-            if j in G.adj[i]:
+        for j in G.adj[i]:
+            if j in visited:
                 return i
     return
 
 def find_smallest_color(G,i):
     global kmax
-    n = len(G.nodes())
     
     col = {0}
     x=1
@@ -45,12 +43,14 @@ def find_smallest_color(G,i):
 def greedy(G):
     global kmax
     kmax = 0
-
     n = len(G.nodes())
+
     i = 1
-    while i != None:
+    for _ in range(0,n):
         G.nodes[i]['color'] = find_smallest_color(G,i)
         i = find_next_vertex(G)
+        if i == None:
+            break
     #end for
         
     print()

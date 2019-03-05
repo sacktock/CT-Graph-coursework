@@ -41,7 +41,6 @@ class Queue:
     
 def bfs(G,a,b):
     G.add_nodes_from(G.nodes(), label = -1) # initialization of all labels
-    n = len(G.nodes())
 
     G.nodes[a]['label'] = 0
     G.nodes[a]['visited'] = "yes"

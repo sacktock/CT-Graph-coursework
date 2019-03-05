@@ -41,13 +41,11 @@ class Queue:
 ####################################################
     
 def bfs_max(G,a):
-    G.add_nodes_from(G.nodes(), label = -1) # initialization of all labels
-    n = len(G.nodes())
-    Max = 0
+    G.add_nodes_from(G.nodes(), label = -1, visited = 'no') # initialization of all labels
+    global Max
     
     G.nodes[a]['label'] = 0
-    G.nodes[a]['visited'] = "yes"
-    visited = 1
+    G.nodes[a]['visited'] = 'yes'
     S = Queue()
     S.enqueue(a)
 
@@ -56,7 +54,7 @@ def bfs_max(G,a):
         label = G.nodes[i]['label'] + 1
         for v in G.adj[i]:
             if G.nodes[v]['visited'] == 'no':
-                G.nodes[v]['visited'] = "yes"
+                G.nodes[v]['visited'] = 'yes'
                 G.nodes[v]['label'] = label
                 if Max < G.nodes[v]['label']:
                     Max = G.nodes[v]['label']
@@ -65,15 +63,10 @@ def bfs_max(G,a):
     return Max
 
 def max_distance(G):
-    n = len(G.nodes())
-    
+    global Max
     Max = 0
-
-    for i in range(1,n+1):
-        m = bfs_max(G,i)
-        if Max < m:
-            Max = m
-
+    for i in G.nodes():
+        bfs_max(G,i)
     return Max
     
 print()
