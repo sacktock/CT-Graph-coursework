@@ -177,3 +177,4 @@ Depth-First-Search visited the following nodes of G10 in this order:
 29
 30
 Depth-First Search found a path in G10 between vertices 6 and 30 of length 24
+

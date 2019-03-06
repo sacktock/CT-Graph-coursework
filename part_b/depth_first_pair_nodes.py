@@ -9,19 +9,21 @@ import graph10
     
 def dfs(G,a,b,u):
     if G.nodes[a]['visited'] == 'no':
-        u = 0
         G.nodes[a]['visited'] = 'yes'
+        G.nodes[a]['label'] = 0
         
-    G.nodes[a]['label'] = u
+    label = G.nodes[a]['label'] + 1
     
     print(a)
+    
     if G.nodes[b]['visited'] == 'no':
         A = list(G.adj[a])
         A.sort()
         for v in A:
             if G.nodes[v]['visited'] == 'no':
                 G.nodes[v]['visited'] = 'yes'
-                dfs(G,v,b,u+1)
+                G.nodes[v]['label'] = label
+                dfs(G,v,b,u)
             if G.nodes[b]['visited'] == 'yes':
                 return
     return
@@ -35,7 +37,6 @@ dfs(G6,a,b,a)  ### count the DFS-path from a to b, starting at a
 print('Depth-First Search found a path in G6 between vertices', a, 'and', b, 'of length', G6.node[b]['label'])
 print()
 
-
 G7=graph7.Graph()
 a=5
 b=36
@@ -43,7 +44,6 @@ print('Depth-First-Search visited the following nodes of G7 in this order:')
 dfs(G7,a,b,a)  ### count the DFS-path from a to b, starting at a
 print('Depth-First Search found a path in G7 between vertices', a, 'and', b, 'of length', G7.node[b]['label'])
 print()
-
 
 G8=graph8.Graph()
 a=15
@@ -53,7 +53,6 @@ dfs(G8,a,b,a)  ### count the DFS-path from a to b, starting at a
 print('Depth-First Search found a path in G8 between vertices', a, 'and', b, 'of length', G8.node[b]['label'])
 print()
 
-
 G9=graph9.Graph()
 a=1
 b=19
@@ -61,7 +60,6 @@ print('Depth-First-Search visited the following nodes of G9 in this order:')
 dfs(G9,a,b,a)  ### count the DFS-path from a to b, starting at a
 print('Depth-First Search found a path in G9 between vertices', a, 'and', b, 'of length', G9.node[b]['label'])
 print()
-
 
 G10=graph10.Graph()
 a=6

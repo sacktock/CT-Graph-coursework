@@ -21,5 +21,4 @@ def Graph():
     G.add_nodes_from(G.nodes(), color='never coloured')
     G.add_nodes_from(G.nodes(), label = -1)
     G.add_nodes_from(G.nodes(), visited = 'no')
-
     return G
