@@ -1,1 +1,1 @@
-repository for CT graph theory coursework
+repository for pyhton graph theory coursework
